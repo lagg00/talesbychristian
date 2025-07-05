@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Tales by Christian</title>
@@ -217,9 +218,122 @@
     background: linear-gradient(135deg, #fcd791, #f6b76f);
     color: #fff1e6;
   }
+  @media (max-width: 768px) {
+  header h1 {
+    font-size: 3.2rem;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  body {
+    padding: 20px 12px;
+    font-size: 16px;
+  }
+
+  .blog-card {
+    padding: 20px 18px;
+    border-width: 4px;
+    min-height: auto;
+  }
+
+  .blog-card h3 {
+    font-size: 1.6rem;
+  }
+
+  .blog-card p {
+    font-size: 1rem;
+  }
+
+  #modal-content {
+    padding: 24px 20px;
+    font-size: 1.1rem;
+  }
+
+  #modal-content h2 {
+    font-size: 2rem;
+  }
+
+  footer {
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  #modal-close {
+    top: 10px;
+    right: 10px;
+    width: 38px;
+    height: 38px;
+    font-size: 2rem;
+  }
+}
+#intro-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #cce7ff, #fff9cc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  font-family: 'Comic Neue', cursive;
+}
+
+.intro-box {
+  text-align: center;
+  padding: 40px;
+  background: #ffffffcc;
+  border-radius: 24px;
+  box-shadow: 6px 6px 0 #a8d0ff, -6px -6px 0 #fffbb0;
+}
+
+#intro-screen h1 {
+  font-size: 2.5rem;
+  color: #3a7bd5;
+  margin-bottom: 10px;
+}
+
+#intro-screen h2 {
+  font-size: 2rem;
+  color: #ff9900;
+  margin-bottom: 20px;
+}
+
+#start-btn {
+  font-size: 1.2rem;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 20px;
+  background: #3a7bd5;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #1d4e89;
+  transition: transform 0.2s ease;
+}
+
+#start-btn:hover {
+  transform: scale(1.05);
+  background: #5a94ff;
+}
+
+#intro-screen.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 </style>
 </head>
 <body>
+<div id="intro-screen">
+  <div class="intro-box">
+    <h1>Welcome to</h1>
+    <h2>TALES BY CHRISTIAN</h2>
+    <button id="start-btn">Start Reading</button>
+  </div>
+</div>
 
 <header>
   <h1>Tales by Christian</h1>
@@ -357,7 +471,10 @@ And someday, maybe people will see that too.`
   });
 
   renderBlogs();
-  
+  document.getElementById('start-btn').addEventListener('click', () => {
+  document.getElementById('intro-screen').classList.add('hide');
+});
+
 </script>
 
 </body>

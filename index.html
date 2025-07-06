@@ -4,104 +4,218 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tales by Christian</title>
+  <meta name="description" content="Tales by Christian — personal stories with trigger warnings about bullying and abuse." />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
 
-    /* Header styling */
+    /* --- Color Palette --- */
+    :root {
+      --blue-light: #a8d0ff;
+      --blue-medium: #3a7bd5;
+      --blue-dark: #1d4e89;
+      --yellow-light: #fff9cc;
+      --yellow-medium: #fffbb0;
+      --yellow-soft: #f7f3c1;
+      --yellow-accent: #ffdd57;
+      --text-dark: #333333;
+      --background: linear-gradient(135deg, #cce7ff, #fff9cc);
+      --modal-bg: #fffde7;
+    }
+
+    /* Reset & base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Comic Neue', cursive, sans-serif;
+      background: var(--background);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a, button {
+      font-family: inherit;
+    }
+
+    /* --- HEADER / LOGO --- */
+    header {
+      max-width: 720px;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 40px;
+      user-select: none;
+    }
     header h1 {
       font-size: 4.5rem;
-      color: #3a7bd5;
-      text-shadow:
-        -2px -2px 0 #fffacd,
-        2px -2px 0 #fffacd,
-        -2px 2px 0 #fffacd,
-        2px 2px 0 #fffacd;
+      color: var(--blue-medium);
       letter-spacing: 0.12em;
-      user-select: none;
       font-weight: 700;
-      margin-bottom: 40px;
       cursor: default;
+      text-shadow:
+        -2px -2px 0 var(--yellow-light),
+        2px -2px 0 var(--yellow-light),
+        -2px 2px 0 var(--yellow-light),
+        2px 2px 0 var(--yellow-light);
       transition: transform 0.3s ease, text-shadow 0.3s ease;
+      margin: 0;
     }
     header h1:hover {
       transform: rotate(-5deg) scale(1.1);
       text-shadow:
-        -3px -3px 0 #ffff99,
-        3px -3px 0 #ffff99,
-        -3px 3px 0 #ffff99,
-        3px 3px 0 #ffff99;
+        -3px -3px 0 var(--yellow-accent),
+        3px -3px 0 var(--yellow-accent),
+        -3px 3px 0 var(--yellow-accent),
+        3px 3px 0 var(--yellow-accent);
     }
 
-    /* Blog list grid container */
-    #blog-list {
+    /* --- INTRO SCREEN --- */
+    #intro-screen {
+      position: fixed;
+      inset: 0;
+      background: var(--background);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      z-index: 3000;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      text-align: center;
+    }
+    #intro-screen.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .intro-box {
+      max-width: 600px;
+      background: #ffffffcc;
+      padding: 36px 32px;
+      border-radius: 24px;
+      box-shadow:
+        6px 6px 0 var(--blue-light),
+        -6px -6px 0 var(--yellow-medium);
+      user-select: none;
+      font-size: 1.2rem;
+      color: var(--blue-dark);
+      line-height: 1.4;
+    }
+    .intro-box h1 {
+      font-size: 2.4rem;
+      margin-bottom: 16px;
+      color: var(--blue-medium);
+      letter-spacing: 0.1em;
+      font-weight: 700;
+    }
+    .intro-box p {
+      margin-bottom: 30px;
+      font-weight: 600;
+      color: #b53a3a; /* soft warning red */
+      text-shadow: 0 0 4px #ffcccbaa;
+    }
+    #start-btn {
+      font-size: 1.3rem;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 24px;
+      background: var(--blue-medium);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 var(--blue-dark);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      user-select: none;
+      width: 100%;
+      max-width: 220px;
+      margin: 0 auto;
+      display: block;
+    }
+    #start-btn:hover {
+      background: var(--blue-dark);
+      transform: scale(1.05);
+    }
+
+    /* --- BLOG LIST --- */
+    main#blog-list {
       width: 100%;
       max-width: 720px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 26px;
-      margin: 0 auto;
+      margin: 0 auto 60px;
     }
 
-    /* Blog cards */
     .blog-card {
-      background: #ffffe0;
-      border: 6px solid #a8d0ff;
+      background: var(--yellow-light);
+      border: 6px solid var(--blue-light);
       border-radius: 30px;
-      padding: 30px 25px;
-      box-shadow: 6px 6px 0 #fffbb0, -6px -6px 0 #a8d0ff;
+      padding: 28px 24px;
+      box-shadow:
+        6px 6px 0 var(--yellow-medium),
+        -6px -6px 0 var(--blue-light);
       cursor: pointer;
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        background-color 0.25s ease,
-        border-color 0.25s ease;
-      color: #333;
+      color: var(--text-dark);
+      font-size: 1.2rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       min-height: 180px;
       user-select: none;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease;
     }
     .blog-card:hover,
     .blog-card:focus-visible {
       outline: none;
       transform: scale(1.07) translateY(-8px) rotate(-2deg);
-      box-shadow: 8px 8px 0 #ffff99, -8px -8px 0 #7db0ff;
-      border-color: #f7f7a0;
-      background: #fffddb;
+      box-shadow: 8px 8px 0 var(--yellow-accent),
+                  -8px -8px 0 var(--blue-medium);
+      border-color: var(--yellow-accent);
+      background: var(--yellow-soft);
     }
     .blog-card h3 {
-      margin: 0 0 14px 0;
-      font-size: 2.2rem;
-      color: #3a7bd5;
+      margin: 0 0 16px 0;
+      font-size: 2rem;
+      color: var(--blue-medium);
+      font-weight: 700;
       letter-spacing: 0.06em;
       text-shadow:
-        -1px -1px 0 #fffacd,
-        1px -1px 0 #fffacd,
-        -1px 1px 0 #fffacd,
-        1px 1px 0 #fffacd;
-      font-weight: 700;
+        -1px -1px 0 var(--yellow-light),
+        1px -1px 0 var(--yellow-light),
+        -1px 1px 0 var(--yellow-light),
+        1px 1px 0 var(--yellow-light);
     }
     .blog-card p {
-      font-size: 1.2rem;
-      line-height: 1.45;
+      flex-grow: 1;
       overflow: hidden;
       text-overflow: ellipsis;
-      flex-grow: 1;
+      white-space: nowrap;
+      margin: 0;
     }
 
-    /* Modal backdrop */
+    /* --- MODAL --- */
     #modal {
-      background: rgba(255, 255, 220, 0.95);
+      background: rgba(255 255 220 / 0.95);
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      inset: 0;
       display: none;
       justify-content: center;
       align-items: center;
       padding: 40px;
-      z-index: 1000;
+      z-index: 4000;
       border-radius: 20px;
-      box-shadow: 0 0 20px 5px #a8d0ff;
+      box-shadow: 0 0 20px 5px var(--blue-light);
+      user-select: text;
+      font-family: 'Comic Neue', cursive;
+      overflow-y: auto;
     }
     #modal.show {
       display: flex;
@@ -118,68 +232,68 @@
       }
     }
     #modal-content {
-      background: #fffde7;
+      background: var(--modal-bg);
       border-radius: 30px;
       padding: 40px 50px;
       max-width: 700px;
       max-height: 85vh;
       overflow-y: auto;
-      color: #3a3a3a;
-      box-shadow: 10px 10px 0 #fffbb0, -10px -10px 0 #a8d0ff;
+      box-shadow:
+        10px 10px 0 var(--yellow-medium),
+        -10px -10px 0 var(--blue-light);
+      color: var(--blue-dark);
       font-size: 1.3rem;
       position: relative;
-      font-family: 'Comic Neue', cursive;
-      user-select: text;
       text-shadow:
-        -1px -1px 0 #a8d0ff,
-        1px -1px 0 #a8d0ff,
-        -1px 1px 0 #a8d0ff,
-        1px 1px 0 #a8d0ff;
+        -1px -1px 0 var(--blue-light),
+        1px -1px 0 var(--blue-light),
+        -1px 1px 0 var(--blue-light),
+        1px 1px 0 var(--blue-light);
+      line-height: 1.5;
     }
     #modal-content h2 {
-      font-size: 3.2rem;
-      color: #3a7bd5;
+      font-size: 3rem;
       margin-bottom: 30px;
       font-weight: 700;
       letter-spacing: 0.05em;
       text-shadow:
-        -2px -2px 0 #fffacd,
-        2px -2px 0 #fffacd,
-        -2px 2px 0 #fffacd,
-        2px 2px 0 #fffacd;
+        -2px -2px 0 var(--yellow-light),
+        2px -2px 0 var(--yellow-light),
+        -2px 2px 0 var(--yellow-light),
+        2px 2px 0 var(--yellow-light);
+      color: var(--blue-medium);
     }
     #modal-content p {
       white-space: pre-line;
+      margin: 0;
     }
     #modal-close {
       position: absolute;
       top: 20px;
       right: 20px;
-      background: #3a7bd5;
+      background: var(--blue-medium);
       border: none;
       border-radius: 50%;
       width: 44px;
       height: 44px;
       font-size: 2.4rem;
-      color: #fff;
+      color: white;
       cursor: pointer;
       font-weight: 700;
-      box-shadow: 2px 2px 4px #2c5ba5;
+      box-shadow: 2px 2px 4px var(--blue-dark);
       user-select: none;
       transition: background-color 0.25s ease;
     }
     #modal-close:hover,
     #modal-close:focus {
-      background-color: #5a94ff;
+      background-color: var(--blue-dark);
       outline: none;
     }
 
-    /* Footer */
+    /* --- FOOTER --- */
     footer {
-      margin-top: 60px;
-      padding: 18px 0;
-      width: 100%;
       max-width: 700px;
+      width: 100%;
       text-align: center;
       color: #a05a2c;
       font-family: 'Comic Neue', cursive;
@@ -189,6 +303,8 @@
       background: linear-gradient(135deg, #f8dcb3, #f2c18a);
       box-shadow: inset 0 2px 10px #f2b44c55, 0 0 18px #ffad5b33;
       border-radius: 20px;
+      padding: 18px 0;
+      margin-bottom: 12px;
       cursor: default;
       transition: background-color 0.3s ease;
     }
@@ -197,27 +313,17 @@
       color: #fff1e6;
     }
 
-    /* Responsive tweaks */
+    /* --- Responsive --- */
     @media (max-width: 768px) {
       header h1 {
         font-size: 3.2rem;
-        text-align: center;
-        line-height: 1.2;
-      }
-      body {
-        padding: 20px 12px;
-        font-size: 16px;
-      }
-      .blog-card {
-        padding: 20px 18px;
-        border-width: 4px;
-        min-height: auto;
       }
       .blog-card h3 {
         font-size: 1.6rem;
       }
       .blog-card p {
         font-size: 1rem;
+        white-space: normal;
       }
       #modal-content {
         padding: 24px 20px;
@@ -226,10 +332,6 @@
       #modal-content h2 {
         font-size: 2rem;
       }
-      footer {
-        font-size: 1rem;
-        padding: 12px;
-      }
       #modal-close {
         top: 10px;
         right: 10px;
@@ -237,84 +339,33 @@
         height: 38px;
         font-size: 2rem;
       }
-    }
-
-    /* Intro screen styles */
-    #intro-screen {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: linear-gradient(135deg, #cce7ff, #fff9cc);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-      font-family: 'Comic Neue', cursive;
-      padding: 20px;
-      text-align: center;
-    }
-    .intro-box {
-      width: 90vw;
-      max-width: 600px;
-      min-width: 300px;
-      padding: 32px;
-      border-radius: 20px;
-      box-shadow: 6px 6px 0 #a8d0ff, -6px -6px 0 #fffbb0;
-      background: #ffffffcc;
-      margin: 40px auto;
-      box-sizing: border-box;
-      transition: width 0.4s ease;
-    }
-    #intro-screen h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      color: #3a7bd5;
-    }
-    #intro-screen h2 {
-      font-size: 1.5rem;
-      color: #ff9900;
-      margin-bottom: 20px;
-    }
-    #start-btn {
-      font-size: 1.1rem;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 20px;
-      background: #3a7bd5;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 3px 3px 0 #1d4e89;
-      transition: transform 0.2s ease;
-      width: 100%;
-      max-width: 240px;
-    }
-    #start-btn:hover {
-      transform: scale(1.05);
-      background: #5a94ff;
-    }
-    #intro-screen.hide {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
+      footer {
+        font-size: 1rem;
+        padding: 12px;
+      }
+      #start-btn {
+        font-size: 1.1rem;
+        max-width: 100%;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Intro Screen -->
   <div id="intro-screen" role="dialog" aria-modal="true" aria-labelledby="intro-title">
     <div class="intro-box">
       <h1 id="intro-title">Tales By Christian</h1>
-      <h2>⚠TW: Sensitive Content (bullying, abuse, etc.)⚠</h2>
+      <p><strong>⚠ Trigger Warning: Sensitive Content</strong><br/>Stories contain bullying, abuse, and tough topics. Reader discretion advised.</p>
       <button id="start-btn" aria-label="Start reading the tales">Start Reading</button>
     </div>
   </div>
 
+  <!-- Header / Logo -->
   <header>
     <h1>Tales by Christian</h1>
   </header>
 
+  <!-- Blog Grid -->
   <main id="blog-list" aria-live="polite" aria-atomic="true"></main>
 
   <!-- Modal -->
@@ -326,6 +377,7 @@
     </div>
   </div>
 
+  <!-- Footer -->
   <footer>
     © 2025 Made by Christian Savarino and help with AI
   </footer>
@@ -380,19 +432,19 @@ The world feels crazy sometimes. Being judged for something that’s not even tr
 
 Imagine being called something terrible, like a murderer, when you’ve never hurt anyone. How would that feel? Would you keep trying to be yourself, or would you start hiding behind a mask, pretending not to care?
 
-That’s how I feel.
+That’s how I feel sometimes. But I want to be real. I want to tell my story.
 
-I’m just a kid trying to get through school, make friends, and figure out who I am. But sometimes, the weight of what others think or say is almost too much to bear.
+So here it is.
 
-Still, I keep going. I have to.
-
-Because this isn’t the whole story. I’m more than the rumors, more than the names. I’m someone who deserves kindness, respect, and understanding.
-
-And someday, maybe people will see that too.`
+I did not walk gay.`
       },
       {
         title: "ITS EVERYDAY!",
-        content: `Coming July 7, 2025.`
+        content: `Coming July 7, 2025...
+
+Stay tuned for new tales, fresh stories, and more of my journey.
+
+Thank you for reading!`
       }
     ];
 
@@ -401,25 +453,37 @@ And someday, maybe people will see that too.`
     const modalTitle = document.getElementById('modal-title');
     const modalText = document.getElementById('modal-text');
     const modalClose = document.getElementById('modal-close');
+    const introScreen = document.getElementById('intro-screen');
+    const startBtn = document.getElementById('start-btn');
 
-    // Render blog cards with preview text
+    // Render blog cards
     function renderBlogs() {
       blogList.innerHTML = '';
       blogs.forEach((blog, i) => {
-        const card = document.createElement('div');
+        const card = document.createElement('article');
         card.className = 'blog-card';
-        card.tabIndex = 0;
-        card.innerHTML = `
-          <h3>${blog.title}</h3>
-          <p>${blog.content.substring(0, 150)}...</p>
-        `;
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-pressed', 'false');
+        card.setAttribute('aria-label', `Read blog post titled ${blog.title}`);
+
+        const title = document.createElement('h3');
+        title.textContent = blog.title;
+        card.appendChild(title);
+
+        const snippet = document.createElement('p');
+        snippet.textContent = blog.content.length > 140 ? blog.content.slice(0, 140) + '...' : blog.content;
+        card.appendChild(snippet);
+
+        // Open modal on click or keyboard activation
         card.addEventListener('click', () => openModal(i));
         card.addEventListener('keydown', e => {
           if (e.key === 'Enter' || e.key === ' ') {
-            openModal(i);
             e.preventDefault();
+            openModal(i);
           }
         });
+
         blogList.appendChild(card);
       });
     }
@@ -430,30 +494,31 @@ And someday, maybe people will see that too.`
       modalText.textContent = blog.content;
       modal.classList.add('show');
       modalClose.focus();
+      // Accessibility: trap focus inside modal
+      document.body.style.overflow = 'hidden'; // prevent background scroll
     }
 
     function closeModal() {
       modal.classList.remove('show');
+      document.body.style.overflow = ''; // restore scroll
     }
 
     modalClose.addEventListener('click', closeModal);
-
     modal.addEventListener('click', e => {
       if (e.target === modal) closeModal();
     });
-
     window.addEventListener('keydown', e => {
       if (e.key === 'Escape' && modal.classList.contains('show')) {
         closeModal();
       }
     });
 
-    // Intro screen start button
-    document.getElementById('start-btn').addEventListener('click', () => {
-      document.getElementById('intro-screen').classList.add('hide');
+    // Start reading button hides intro screen
+    startBtn.addEventListener('click', () => {
+      introScreen.classList.add('hide');
+      blogList.focus();
     });
 
-    // Render blogs initially
     renderBlogs();
   </script>
 </body>

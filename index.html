@@ -4,33 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tales by Christian</title>
-  <link rel="icon" href="Tales-removebg-preview (1).png" type="image/png" />
-  <meta name="google-site-verification" content="4e0Sf0aSk49oSwgQYa-O9Fef6aX8lSnX1YW9xsiEC-4" />
-
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
-
-    #logo {
-      width: 200px;
-      height: auto;
-      display: block;
-      margin: 20px auto;
-    }
-
-    body {
-      margin: 0;
-      background: linear-gradient(135deg, #cce7ff, #fff9cc);
-      font-family: 'Comic Neue', cursive, sans-serif;
-      color: #333;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 30px 20px;
-      font-size: 18px;
-      letter-spacing: 0.04em;
-      line-height: 1.5;
-    }
 
     /* Header styling */
     header h1 {
@@ -48,7 +23,6 @@
       cursor: default;
       transition: transform 0.3s ease, text-shadow 0.3s ease;
     }
-
     header h1:hover {
       transform: rotate(-5deg) scale(1.1);
       text-shadow:
@@ -74,11 +48,13 @@
       border: 6px solid #a8d0ff;
       border-radius: 30px;
       padding: 30px 25px;
-      box-shadow:
-        6px 6px 0 #fffbb0,
-        -6px -6px 0 #a8d0ff;
+      box-shadow: 6px 6px 0 #fffbb0, -6px -6px 0 #a8d0ff;
       cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease;
       color: #333;
       display: flex;
       flex-direction: column;
@@ -86,19 +62,14 @@
       min-height: 180px;
       user-select: none;
     }
-
     .blog-card:hover,
     .blog-card:focus-visible {
       outline: none;
       transform: scale(1.07) translateY(-8px) rotate(-2deg);
-      box-shadow:
-        8px 8px 0 #ffff99,
-        -8px -8px 0 #7db0ff;
+      box-shadow: 8px 8px 0 #ffff99, -8px -8px 0 #7db0ff;
       border-color: #f7f7a0;
       background: #fffddb;
     }
-
-    /* Blog card title */
     .blog-card h3 {
       margin: 0 0 14px 0;
       font-size: 2.2rem;
@@ -111,8 +82,6 @@
         1px 1px 0 #fffacd;
       font-weight: 700;
     }
-
-    /* Blog card paragraph */
     .blog-card p {
       font-size: 1.2rem;
       line-height: 1.45;
@@ -134,14 +103,10 @@
       border-radius: 20px;
       box-shadow: 0 0 20px 5px #a8d0ff;
     }
-
-    /* Show modal with animation */
     #modal.show {
       display: flex;
       animation: popIn 0.3s ease forwards;
     }
-
-    /* Pop in keyframe animation */
     @keyframes popIn {
       from {
         opacity: 0;
@@ -152,8 +117,6 @@
         transform: scale(1) rotate(0);
       }
     }
-
-    /* Modal content container */
     #modal-content {
       background: #fffde7;
       border-radius: 30px;
@@ -162,9 +125,7 @@
       max-height: 85vh;
       overflow-y: auto;
       color: #3a3a3a;
-      box-shadow:
-        10px 10px 0 #fffbb0,
-        -10px -10px 0 #a8d0ff;
+      box-shadow: 10px 10px 0 #fffbb0, -10px -10px 0 #a8d0ff;
       font-size: 1.3rem;
       position: relative;
       font-family: 'Comic Neue', cursive;
@@ -175,8 +136,6 @@
         -1px 1px 0 #a8d0ff,
         1px 1px 0 #a8d0ff;
     }
-
-    /* Modal heading */
     #modal-content h2 {
       font-size: 3.2rem;
       color: #3a7bd5;
@@ -189,16 +148,13 @@
         -2px 2px 0 #fffacd,
         2px 2px 0 #fffacd;
     }
-
-    /* Modal paragraph */
     #modal-content p {
       white-space: pre-line;
     }
-
-    /* Modal close button */
     #modal-close {
       position: absolute;
-      top: 20px; right: 20px;
+      top: 20px;
+      right: 20px;
       background: #3a7bd5;
       border: none;
       border-radius: 50%;
@@ -212,14 +168,13 @@
       user-select: none;
       transition: background-color 0.25s ease;
     }
-
     #modal-close:hover,
     #modal-close:focus {
       background-color: #5a94ff;
       outline: none;
     }
 
-    /* Footer styling */
+    /* Footer */
     footer {
       margin-top: 60px;
       padding: 18px 0;
@@ -237,7 +192,6 @@
       cursor: default;
       transition: background-color 0.3s ease;
     }
-
     footer:hover {
       background: linear-gradient(135deg, #fcd791, #f6b76f);
       color: #fff1e6;
@@ -250,40 +204,32 @@
         text-align: center;
         line-height: 1.2;
       }
-
       body {
         padding: 20px 12px;
         font-size: 16px;
       }
-
       .blog-card {
         padding: 20px 18px;
         border-width: 4px;
         min-height: auto;
       }
-
       .blog-card h3 {
         font-size: 1.6rem;
       }
-
       .blog-card p {
         font-size: 1rem;
       }
-
       #modal-content {
         padding: 24px 20px;
         font-size: 1.1rem;
       }
-
       #modal-content h2 {
         font-size: 2rem;
       }
-
       footer {
         font-size: 1rem;
         padding: 12px;
       }
-
       #modal-close {
         top: 10px;
         right: 10px;
@@ -309,7 +255,6 @@
       padding: 20px;
       text-align: center;
     }
-
     .intro-box {
       width: 90vw;
       max-width: 600px;
@@ -322,19 +267,16 @@
       box-sizing: border-box;
       transition: width 0.4s ease;
     }
-
     #intro-screen h1 {
       font-size: 2rem;
       margin-bottom: 10px;
       color: #3a7bd5;
     }
-
     #intro-screen h2 {
       font-size: 1.5rem;
       color: #ff9900;
       margin-bottom: 20px;
     }
-
     #start-btn {
       font-size: 1.1rem;
       padding: 12px 20px;
@@ -349,12 +291,10 @@
       width: 100%;
       max-width: 240px;
     }
-
     #start-btn:hover {
       transform: scale(1.05);
       background: #5a94ff;
     }
-
     #intro-screen.hide {
       opacity: 0;
       visibility: hidden;
@@ -363,11 +303,11 @@
   </style>
 </head>
 <body>
-  <div id="intro-screen">
+  <div id="intro-screen" role="dialog" aria-modal="true" aria-labelledby="intro-title">
     <div class="intro-box">
-      <h1>Tales By Christian</h1>
+      <h1 id="intro-title">Tales By Christian</h1>
       <h2>⚠TW: Sensitive Content (bullying, abuse, etc.)⚠</h2>
-      <button id="start-btn">Start Reading</button>
+      <button id="start-btn" aria-label="Start reading the tales">Start Reading</button>
     </div>
   </div>
 
@@ -375,10 +315,10 @@
     <h1>Tales by Christian</h1>
   </header>
 
-  <div id="blog-list"></div>
+  <main id="blog-list" aria-live="polite" aria-atomic="true"></main>
 
   <!-- Modal -->
-  <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-text" tabindex="-1">
     <div id="modal-content">
       <button id="modal-close" aria-label="Close modal">&times;</button>
       <h2 id="modal-title"></h2>
@@ -462,6 +402,7 @@ And someday, maybe people will see that too.`
     const modalText = document.getElementById('modal-text');
     const modalClose = document.getElementById('modal-close');
 
+    // Render blog cards with preview text
     function renderBlogs() {
       blogList.innerHTML = '';
       blogs.forEach((blog, i) => {
@@ -507,11 +448,13 @@ And someday, maybe people will see that too.`
       }
     });
 
-    renderBlogs();
-
+    // Intro screen start button
     document.getElementById('start-btn').addEventListener('click', () => {
       document.getElementById('intro-screen').classList.add('hide');
     });
+
+    // Render blogs initially
+    renderBlogs();
   </script>
 </body>
 </html>

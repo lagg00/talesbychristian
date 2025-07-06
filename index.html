@@ -283,11 +283,16 @@
   text-align: center;
 }
 .intro-box {
-  max-width: 90vw;    /* 90% of the viewport width */
-  width: 100%;
-  padding: 24px;
+  width: 90vw;               /* almost full width on small screens */
+  max-width: 600px;          /* won’t get wider than 600px on big screens */
+  min-width: 300px;          /* keeps a nice box shape on wider screens */
+  padding: 32px;
   border-radius: 20px;
   box-shadow: 6px 6px 0 #a8d0ff, -6px -6px 0 #fffbb0;
+  background: #ffffffcc;
+  margin: 40px auto;         /* center horizontally with vertical spacing */
+  box-sizing: border-box;    /* padding included in width */
+  transition: width 0.4s ease; /* smooth resize transition */
 }
 
 #intro-screen h1 {
